@@ -1,0 +1,32 @@
+@import (less) "./_reset.less";
+@import (less) "./vars.less";
+
+// 页面切换动画
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+    transition: all .3s;
+}
+
+.fade-transform-enter {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.fade-transform-leave-to {
+    opacity: 0;
+    transform: translateX(20px);
+}
+
+// 卡片标题样式
+.card-header {
+    position: relative;
+}
+
+.card-header:before {
+    position: absolute;
+    left: -10px;
+    content: "";
+    width: 5px;
+    height: 24px;
+    background-color: #3b8de6;
+}
