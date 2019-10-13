@@ -1,5 +1,6 @@
 <template>
 	<header class="head admin-head">
+		<span class="fold-icon"><i class="el-icon-finished"></i></span>
 		<el-menu class="user-info" mode="horizontal" @select="menuSelected">
 			<el-submenu index="userAvatar" name="user">
 				<template slot="title">
@@ -16,7 +17,6 @@
 import { mapState, mapActions } from 'vuex';
 import { logout } from '@/store/api/user';
 
-
 export default {
 	data () {
 		return {
@@ -26,7 +26,7 @@ export default {
 	computed: {
 		...mapState('user', ['userInfo']),
 		userName () {
-			if (this.userInfo) {
+			if (this.userInfo.realName) {
 				return this.userInfo.realName.substr(-1);
 			}
 			return '';
@@ -62,10 +62,26 @@ export default {
 	height: 65px;
 	position: relative;
 	background: #fff;
-	.user-info {
+	.fold-icon {
+		position: absolute;
+		left: 20px;
+		top: 25%;
+		font-size: 24px;
+		color: #505765;
+	}
+	.user-info.el-menu--horizontal {
+		border-bottom: none;
+		font-weight: 600;
 		position: absolute;
 		right: 10px;
+
+		.el-submenu__title i {
+			color: #505765;
+			font-weight: 600;
+			font-size: 13px;
+		}
 	}
+
 	.user-avatar {
 		margin-right: 10px;
 		background: #3a8ee6;

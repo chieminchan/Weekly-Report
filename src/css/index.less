@@ -17,6 +17,10 @@
     transform: translateX(20px);
 }
 
+#app {
+    height: 100%;
+}
+
 // 卡片标题样式
 .card-header {
     position: relative;
@@ -24,9 +28,19 @@
 
 .card-header:before {
     position: absolute;
-    left: -10px;
+    left: -12px;
     content: "";
     width: 5px;
     height: 24px;
     background-color: #3b8de6;
+}
+
+// 分页样式
+.pagination-row.el-pagination {
+    text-align: right;
+    padding: 20px;
+
+    .el-select .el-input .el-input__inner {
+        border-radius: 0;
+    }
 }

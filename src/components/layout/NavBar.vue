@@ -7,7 +7,7 @@
 		<el-menu class='nav' :default-active="activeItem" background-color="#505765" text-color="white" active-text-color="#409EFF">
 			<template v-for="(item, index) in menu">
 				<template v-if="item.hasOwnProperty('children')">
-					<el-submenu :index="item.name" :key="index">
+					<el-submenu :index="index+''" :key="index">
 						<template slot="title">
 							<i class="icon" :class="item.icon"></i>
 							<span class="menu-item-text"> {{item.title}}</span>
@@ -36,18 +36,13 @@
 </template>
 
 <script>
-import navData from '@/const/adminNav';
+import navData from '@/const/nav';
 
 export default {
 
 	computed: {
 		menu () {
 			return navData;
-		},
-		openItem () {
-			// const { menu } = this;
-			// return _.map(menu, (item, name) => item.name);
-			return ['admin-activity'];
 		},
 		activeItem () {
 			const routePath = this.$route.path;

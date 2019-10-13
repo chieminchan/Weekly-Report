@@ -5,7 +5,7 @@ import * as types from './mutationTypes';
 export default {
     namespaced: true,
     state: {
-        userInfo: null
+        userInfo: {}
     },
     actions: {
         loadUserInfo: ({ commit }, params) => {

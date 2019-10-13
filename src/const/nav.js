@@ -1,42 +1,46 @@
 export default [
-  {
-    title: '首页',
-    icon: 'ios-school',
-    name: 'activity',
-    to: {
-      path: '/',
+    // {
+    //     title: '我的周报',
+    //     name: 'reports',
+    //     icon: 'el-icon-view',
+    //     to: {
+    //         path: '/reports'
+    //     },
+    // },
+    // {
+    //     title: '写周报',
+    //     name: 'new-report',
+    //     icon: 'el-icon-edit',
+    //     to: {
+    //         path: '/new-report'
+    //     },
+    // },
+    {
+        title: '组员周报',
+        name: 'member-reports',
+        icon: 'el-icon-document-copy',
+        to: {
+            path: '/member-reports'
+        },
     },
-  },
-  {
-    title: '发现',
-    icon: 'md-infinite',
-    name: 'find',
-    to: {
-      path: '/find',
+    {
+        title: '组员管理',
+        icon: 'el-icon-document-copy',
+        children: [{
+            title: '部门组员',
+            icon: 'el-icon-document-copy',
+            name: 'members',
+            to: {
+                path: '/members'
+            }
+        }, ]
     },
-  },
-  {
-    title: '发布',
-    icon: 'logo-dribbble',
-    name: 'publish',
-    to: {
-      path: '/publish',
-    },
-  },
-  {
-    title: '个人主页',
-    icon: 'md-aperture',
-    name: 'user',
-    to: {
-      path: '/user',
-    },
-  },
-  {
-    title: '意见反馈',
-    icon: '',
-    name: 'feedback',
-    to: {
-      path: '/feedback'
-    }
-  }
+    // {
+    //     title: '部门管理',
+    //     icon: 'el-icon-document-copy',
+    //     name: 'company',
+    //     to: {
+    //         path: '/dept'
+    //     }
+    // }
 ];

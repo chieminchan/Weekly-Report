@@ -1,6 +1,6 @@
 <template>
 	<el-card class="reports-card">
-		<h3 class="card-header" slot="header">我的周报</h3>
+		<h3 class="card-header" slot="header">组员周报</h3>
 		<el-table class="reports-table" :data="myReports">
 			<el-table-column label="周报日期" width="190" sortable align="center">
 				<template slot-scope="scope">{{ scope.row | formatDate }}</template>
@@ -13,10 +13,6 @@
 				<template slot-scope="scope">{{ scope.row.state | formatState }}</template>
 			</el-table-column>
 			<el-table-column label="计划完成时间" prop="finishTime" sortable align="center" width="130"></el-table-column>
-			<el-table-column label="提交时间" prop="createTime" align="center" width="160"></el-table-column>
-			<el-table-column label="抄送组员" prop="members" align="center">
-				<template slot-scope="scope">{{ scope.row.carbonCopy | formatCc }}</template>
-			</el-table-column>
 			<el-table-column label="备注说明" prop="remark" align="center"></el-table-column>
 			<el-table-column label="操作" width="150">
 				<template>
@@ -33,8 +29,7 @@
 </template>
 
 <script>
-import { loadReports } from '@/store/api/reports';
-import { isArray } from 'util';
+import { loadCcReports } from '@/store/api/reports';
 
 export default {
 	data () {
@@ -58,16 +53,13 @@ export default {
 			const stateArr = ['产品规划', '研发规划', '开发中', '待测试', '完成'];
 			return stateArr[state];
 		},
-		formatCc (ccArr) {
-			return isArray(ccArr) ? ccArr.join('，') : '';
-		}
 	},
 	computed: {},
 	methods: {
 		loadData () {
 			const { size, current } = this;
 			const params = { size, current };
-			loadReports(params).then((response) => {
+			loadCcReports(params).then((response) => {
 				this.myReports = response.data.records;
 				this.total = response.data.total;
 			}).catch((err) => {

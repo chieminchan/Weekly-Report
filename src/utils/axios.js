@@ -34,11 +34,8 @@ instance.interceptors.request.use((config) => {
 });
 
 // response拦截器
-instance.interceptors.response.use(
-    (response) => {
-        const {
-            data
-        } = response;
+instance.interceptors.response.use((response) => {
+        const { data } = response;
         const path = `${location.pathname}${location.search}`;
         switch (data.code) {
             case 200:
@@ -55,9 +52,7 @@ instance.interceptors.response.use(
                 break;
             case 403:
                 // 后台活动403页面
-                router.replace({
-                    name: 'forbidden'
-                });
+                router.replace({ name: '403' });
                 break;
         }
         return Promise.reject(data);

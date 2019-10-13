@@ -1,13 +1,12 @@
 <template>
 	<div class="login-page">
-
 		<el-card class="login-card">
 			<h2 class="login-title" slot="header">
 				<img class="logo-img" src="https://i.loli.net/2019/10/07/bjihn6HuBLzfYXg.png">
 				<span class="logo-text">周报系统</span>
 			</h2>
 			<el-form class="login-form" :model="user" label-position="left" :rules="ruleInline" ref="loginForm">
-				<el-form-item class="item" label="账号" prop="username">
+				<el-form-item class="item" label="UM号" prop="username">
 					<el-input class="item-content" type="text" v-model="user.username"></el-input>
 				</el-form-item>
 				<el-form-item class="item" label="密 码" prop="password">
@@ -40,7 +39,7 @@ export default {
 				username: [
 					{
 						required: true,
-						message: '请填写有效的账号.',
+						message: '请填写有效的UM号.',
 						trigger: 'blur'
 					}
 				],
@@ -68,7 +67,7 @@ export default {
 				if (isValid) {
 					this.userLogin();
 				} else {
-					this.$message.error('请输入有效的账号密码');
+					this.$message.error('请输入有效的UM号和密码');
 				}
 			});
 		},
@@ -95,7 +94,7 @@ export default {
 .login {
 	&-page {
 		width: 100%;
-		height: 785px;
+		height: 100%;
 		position: relative;
 		background: white;
 
