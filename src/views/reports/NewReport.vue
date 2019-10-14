@@ -27,7 +27,7 @@
 							<el-option v-for="item in stateOpt" :key="item.index" :label="item.text" :value="item.index"></el-option>
 						</el-select>
 					</el-form-item>
-					<el-form-item class="new-item" label="抄 送 成 员" prop="carbonCopy">
+					<el-form-item class="new-item" label="抄 送 组 员" prop="carbonCopy">
 						<el-select v-model="newReport.carbonCopy" placeholder="请选择抄送组员" multiple>
 							<el-option v-for="item in departmentMembers" :key="item.username" :label="item.realName" :value="item.username">
 							</el-option>
@@ -39,11 +39,12 @@
 				<el-input class="content-input" type="textarea" resize="none" placeholder="请输入周报内容" v-model="newReport.content"></el-input>
 			</el-form-item>
 			<el-form-item class="new-item remark-item" label="备 注 说 明" prop="remark">
-				<el-input class="remark-input" type="textarea" resize="none" placeholder=" 请输入备注内容" v-model="newReport.remark" show-word-limit></el-input>
+				<el-input class="remark-input" type="textarea" resize="none" placeholder=" 请输入备注内容，如工作难点总结，下周计划等等.." v-model="newReport.remark" show-word-limit></el-input>
 			</el-form-item>
 		</el-form>
 		<p class="commit-btns">
 			<el-button>取消</el-button>
+			<el-button type="primary" plain="">保存</el-button>
 			<el-button type="primary" @click="submitReport">提交</el-button>
 		</p>
 	</el-card>

@@ -1,6 +1,15 @@
 <template>
 	<el-card class="reports-card">
 		<h3 class="card-header" slot="header">我的周报</h3>
+
+		<div class="filter">
+			<p class="filter-item">
+				周报日期:
+				<el-date-picker type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd">
+				</el-date-picker>
+			</p>
+		</div>
+
 		<el-table class="reports-table" :data="myReports">
 			<el-table-column label="周报日期" width="190" sortable align="center">
 				<template slot-scope="scope">{{ scope.row | formatDate }}</template>
@@ -13,13 +22,14 @@
 				<template slot-scope="scope">{{ scope.row.state | formatState }}</template>
 			</el-table-column>
 			<el-table-column label="计划完成时间" prop="finishTime" sortable align="center" width="130"></el-table-column>
-			<el-table-column label="提交时间" prop="createTime" align="center" width="160"></el-table-column>
-			<el-table-column label="抄送组员" prop="members" align="center">
+			<!-- <el-table-column label="提交时间" prop="createTime" align="center" width="160"></el-table-column> -->
+			<el-table-column label="抄送组员" prop="members" align="center" width="180">
 				<template slot-scope="scope">{{ scope.row.carbonCopy | formatCc }}</template>
 			</el-table-column>
 			<el-table-column label="备注说明" prop="remark" align="center"></el-table-column>
-			<el-table-column label="操作" width="150">
+			<el-table-column label="操作" width="250">
 				<template>
+					<el-button size="small" type="primary" plain disabled>编辑</el-button>
 					<el-button size="small" type="primary" plain>详情</el-button>
 					<el-button size="small" type="success" plain>导出</el-button>
 				</template>

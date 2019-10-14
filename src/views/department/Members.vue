@@ -9,6 +9,12 @@
 				</el-select>
 			</span>
 
+			<p class="filter-item">
+				姓名:
+				<el-input placeholder="姓名"></el-input>
+			</p>
+			<el-button type="primary" size="small">查询</el-button>
+
 			<el-button type="primary" size="small" plain>增加</el-button>
 		</div>
 		<el-table class="reports-table" :data="members">
@@ -183,6 +189,21 @@ export default {
 		width: 300px;
 		margin-right: 20px;
 		margin-bottom: 20px;
+	}
+
+	.actions-row {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+
+		.select-lable {
+			width: 450px;
+			line-height: 1;
+		}
+
+		.filter-item {
+			width: 300px;
+		}
 	}
 
 	.edit-form {

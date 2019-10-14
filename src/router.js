@@ -40,11 +40,11 @@ const router = new Router({
                     path: '/member-reports',
                     component: () => import('@/views/reports/MemberReports.vue'),
                 },
-                // {
-                //     name: 'company',
-                //     path: '/company',
-                //     component: () => import(''),
-                // },
+                {
+                    name: 'departments',
+                    path: '/departments',
+                    component: () => import('@/views/department/Department.vue'),
+                },
                 {
                     path: '/403',
                     name: '403',

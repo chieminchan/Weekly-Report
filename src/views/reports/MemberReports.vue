@@ -1,7 +1,22 @@
 <template>
 	<el-card class="reports-card">
 		<h3 class="card-header" slot="header">组员周报</h3>
+		<div class="filter">
+			<p class="filter-item">
+				周报日期:
+				<el-date-picker type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd">
+				</el-date-picker>
+			</p>
+			<p class="filter-item">
+				组员姓名:
+				<el-input placeholder="组员姓名"></el-input>
+			</p>
+			<el-button type="primary" size="small">查询</el-button>
+		</div>
 		<el-table class="reports-table" :data="myReports">
+			<el-table-column label="组员姓名" sortable align="center">
+				<template slot-scope="scope">{{ scope.row.realName }}</template>
+			</el-table-column>
 			<el-table-column label="周报日期" width="190" sortable align="center">
 				<template slot-scope="scope">{{ scope.row | formatDate }}</template>
 			</el-table-column>
@@ -93,6 +108,19 @@ export default {
 		box-sizing: border-box;
 		white-space: nowrap;
 		line-height: 23px;
+	}
+
+	.filter {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+	}
+
+	.filter-item {
+		margin-right: 30px;
+		.el-input {
+			width: auto;
+		}
 	}
 }
 </style>

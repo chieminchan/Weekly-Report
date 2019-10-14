@@ -15,14 +15,14 @@ export default [
     //         path: '/new-report'
     //     },
     // },
-    {
-        title: '组员周报',
-        name: 'member-reports',
-        icon: 'el-icon-document-copy',
-        to: {
-            path: '/member-reports'
-        },
-    },
+    // {
+    //     title: '组员周报',
+    //     name: 'member-reports',
+    //     icon: 'el-icon-document-copy',
+    //     to: {
+    //         path: '/member-reports'
+    //     },
+    // },
     {
         title: '组员管理',
         icon: 'el-icon-document-copy',
@@ -35,12 +35,12 @@ export default [
             }
         }, ]
     },
-    // {
-    //     title: '部门管理',
-    //     icon: 'el-icon-document-copy',
-    //     name: 'company',
-    //     to: {
-    //         path: '/dept'
-    //     }
-    // }
+    {
+        title: '部门管理',
+        icon: 'el-icon-document-copy',
+        name: 'departments',
+        to: {
+            path: '/departments'
+        }
+    }
 ];
