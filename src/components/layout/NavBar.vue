@@ -36,19 +36,31 @@
 </template>
 
 <script>
-import navData from '@/const/nav';
-
+import * as navData from '@/const/nav';
+import { mapState } from 'vuex';
 export default {
-
+	data () {
+		return {
+		}
+	},
 	computed: {
+		...mapState(['userInfo']),
 		menu () {
-			return navData;
+			switch (this.userInfo.roleId) {
+				case 1:
+					return navData.adminNav;
+				case 2:
+					return navData.managerNav;
+				case 3:
+					return navData.memberNav;
+			}
+			return [];
 		},
 		activeItem () {
 			const routePath = this.$route.path;
 			return routePath.split('/')[1];
 		}
-	}
+	},
 }
 </script>
 

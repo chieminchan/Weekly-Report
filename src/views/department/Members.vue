@@ -2,7 +2,8 @@
 	<el-card class='members-card'>
 		<h3 class="card-header" slot="header">部门组员</h3>
 		<div class="actions-row">
-			<span class="select-lable">部门：
+			<span class="select-lable">
+				部门：
 				<el-select class="dept-selection" v-model="selectedDept" placeholder="请选择部门" filterable :disabled="isDeptManager">
 					<el-option v-for="item in deptOpt" :key="item.id" :label="item.deptDesc" :value="item.id">
 					</el-option>
@@ -103,7 +104,7 @@ export default {
 		}
 	},
 	computed: {
-		...mapState('user', ['userInfo']),
+		...mapState(['userInfo']),
 		isDeptManager () {
 			if (this.userInfo.roleId) {
 				return this.userInfo.roleId === 2;
@@ -185,29 +186,34 @@ export default {
 </script>
 <style type='text/less' lang='less'>
 .members-card {
-	.dept-selection {
-		width: 300px;
-		margin-right: 20px;
-		margin-bottom: 20px;
-	}
-
 	.actions-row {
 		display: flex;
+		flex-direction: row;
 		justify-content: flex-start;
 		align-items: center;
 
 		.select-lable {
-			width: 450px;
-			line-height: 1;
+			width: 380px;
+			vertical-align: bottom;
+
+			.dept-selection {
+				width: 300px;
+				margin-right: 20px;
+			}
 		}
 
-		.filter-item {
+		.filter-item .el-input {
 			width: 300px;
+			margin-right: 20px;
 		}
 	}
 
 	.edit-form {
 		padding: 0 30px;
+	}
+
+	.dept-selection {
+		width: 100%;
 	}
 }
 </style>

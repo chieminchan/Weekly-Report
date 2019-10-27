@@ -24,7 +24,7 @@ export default {
 		};
 	},
 	computed: {
-		...mapState('user', ['userInfo']),
+		...mapState(['userInfo']),
 		userName () {
 			if (this.userInfo.realName) {
 				return this.userInfo.realName.substr(-1);
@@ -33,7 +33,7 @@ export default {
 		},
 	},
 	methods: {
-		...mapActions('user', ['loadUserInfo']),
+		...mapActions(['initState']),
 		menuSelected (index) {
 			if (index === 'signOut') {
 				this.signOut();
@@ -41,18 +41,13 @@ export default {
 		},
 		signOut () {
 			logout().then(() => {
+				localStorage.removeItem('haslogin');
 				this.$router.push({ name: 'login' });
 			}).catch((error) => {
 				this.$message.error(error.msg);
 			});
 		},
-		getProfile () {
-			this.loadUserInfo();
-		}
 	},
-	created () {
-		this.getProfile();
-	}
 };
 </script>
 <style type='text/less' lang='less'>

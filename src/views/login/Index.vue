@@ -26,6 +26,7 @@
 <script>
 import { login } from '@/store/api/user';
 import LazyloadImg from '@/components/LazyloadImg';
+import { mapActions } from 'vuex';
 
 export default {
 	components: { LazyloadImg },
@@ -62,6 +63,7 @@ export default {
 		};
 	},
 	methods: {
+		...mapActions(['initState']),
 		submit () {
 			this.$refs.loginForm.validate(isValid => {
 				if (isValid) {
@@ -77,14 +79,19 @@ export default {
 
 			login({ username, password }).then(() => {
 				this.$message.success('登录成功');
+				localStorage.setItem('haslogin', true);
 				this.isFetching = false;
-				this.$router.push({ name: 'home' });
+				this.$router.push('/');
 			}).catch(() => {
 				this.isFetching = false;
-				this.$message.error('登陆失败,请检查账号和密码是否正确！');
+				this.$message.error('登录失败,请检查账号和密码是否正确！');
 			});
 		}
 	},
+	created () {
+		localStorage.removeItem('haslogin');
+		this.initState();
+	}
 };
 </script>
 

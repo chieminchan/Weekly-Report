@@ -53,4 +53,13 @@ export default {
 }
 </script>
 <style type='text/less' lang='less'>
+.dept-card {
+	.actions-row {
+		margin-bottom: 20px;
+	}
+	.dept-selection.el-input {
+		width: 300px;
+		margin-right: 20px;
+	}
+}
 </style>

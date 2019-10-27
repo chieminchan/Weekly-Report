@@ -2,7 +2,7 @@
 	<el-card class="reports-card">
 		<h3 class="card-header" slot="header">组员周报</h3>
 		<div class="filter">
-			<p class="filter-item">
+			<p class="filter-item daterange-input">
 				周报日期:
 				<el-date-picker type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd">
 				</el-date-picker>
@@ -114,6 +114,7 @@ export default {
 		display: flex;
 		justify-content: flex-start;
 		align-items: center;
+		margin-bottom: 10px;
 	}
 
 	.filter-item {
@@ -121,6 +122,12 @@ export default {
 		.el-input {
 			width: auto;
 		}
+	}
+
+	.daterange-input .el-input__inner {
+		border: none;
+		border-bottom: 1px solid #ccc;
+		border-radius: 0;
 	}
 }
 </style>

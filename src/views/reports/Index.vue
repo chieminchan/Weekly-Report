@@ -3,7 +3,7 @@
 		<h3 class="card-header" slot="header">我的周报</h3>
 
 		<div class="filter">
-			<p class="filter-item">
+			<p class="filter-item daterange-input">
 				周报日期:
 				<el-date-picker type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd">
 				</el-date-picker>
@@ -28,8 +28,8 @@
 			</el-table-column>
 			<el-table-column label="备注说明" prop="remark" align="center"></el-table-column>
 			<el-table-column label="操作" width="250">
-				<template>
-					<el-button size="small" type="primary" plain disabled>编辑</el-button>
+				<template slot-scope="scope">
+					<el-button size="small" type="primary" plain :disabled="scope.row.condition = 1">编辑</el-button>
 					<el-button size="small" type="primary" plain>详情</el-button>
 					<el-button size="small" type="success" plain>导出</el-button>
 				</template>
@@ -111,6 +111,12 @@ export default {
 		box-sizing: border-box;
 		white-space: nowrap;
 		line-height: 23px;
+	}
+
+	.daterange-input .el-input__inner {
+		border: none;
+		border-bottom: 1px solid #ccc;
+		border-radius: 0;
 	}
 }
 </style>

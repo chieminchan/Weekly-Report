@@ -123,7 +123,7 @@ export default {
 					return item.roleId === 3;
 				});
 			}
-			return {};
+			return [];
 		}
 	},
 	methods: {

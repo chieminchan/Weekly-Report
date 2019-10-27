@@ -2,10 +2,11 @@ import _ from 'lodash';
 import axios from 'axios';
 import Qs from 'qs';
 import router from '@/router';
+import store from '@/store';
 
 // 创建axios实例,对axios进行封装
 const instance = axios.create({
-    baseURL: 'http://192.168.0.7:8000',
+    baseURL: 'http://47.107.227.25:8000',
     timeout: 60000,
     withCredentials: true,
     paramsSerializer(data) {
@@ -36,18 +37,13 @@ instance.interceptors.request.use((config) => {
 // response拦截器
 instance.interceptors.response.use((response) => {
         const { data } = response;
-        const path = `${location.pathname}${location.search}`;
         switch (data.code) {
             case 200:
                 return Promise.resolve(data);
             case 500201:
                 if (router.currentRoute.name !== 'login') {
-                    router.replace({
-                        name: 'login',
-                        query: {
-                            q: path
-                        }
-                    });
+                    store.dispatch('initState');
+                    router.replace({ name: 'login' });
                 }
                 break;
             case 403:
