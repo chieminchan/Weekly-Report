@@ -29,8 +29,8 @@
 			<el-table-column label="备注说明" prop="remark" align="center"></el-table-column>
 			<el-table-column label="操作" width="250">
 				<template slot-scope="scope">
-					<el-button size="small" type="primary" plain :disabled="scope.row.condition = 1">编辑</el-button>
-					<el-button size="small" type="primary" plain>详情</el-button>
+					<el-button size="small" type="primary" plain :disabled="scope.row.commitState === 1">编辑</el-button>
+					<el-button size="small" type="primary" plain @click="handleDetail(scope.row)">详情</el-button>
 					<el-button size="small" type="success" plain>导出</el-button>
 				</template>
 			</el-table-column>
@@ -39,11 +39,60 @@
 		<el-pagination class="pagination-row" :page-sizes="[5, 10, 15, 20]" :current-page.sync="current" :page-size.sync="size" layout="sizes, prev, pager, next" :total="total">
 		</el-pagination>
 
+		<el-dialog :visible.sync="detailDialogVisible" title="周报详情">
+			<div class="detail-wrapper">
+				<p class="detail-item">
+					<span class="detail-lable">周 报 日 期：</span>
+					<span class="detail-val">
+						{{`${selecteReport.startTime} 至 ${selecteReport.endTime}`}}
+					</span>
+				</p>
+				<p class="detail-item">
+					<span class="detail-lable">业 务 性 质 ：</span>
+					<span class="detail-val">
+						{{selecteReport.bizType | formatBizType}}
+					</span>
+				</p>
+				<p class="detail-item">
+					<span class="detail-lable">当 前 进 度 ：</span>
+					<span class="detail-val">
+						{{selecteReport.state | formatState}}
+					</span>
+				</p>
+				<p class="detail-item">
+					<span class="detail-lable">计划完成时间 ：</span>
+					<span class="detail-val">
+						{{selecteReport.finishTime}}
+					</span>
+				</p>
+				<p class="detail-item">
+					<span class="detail-lable">抄 送 成 员 ：</span>
+					<span class="detail-val">
+						<template v-for="item in selecteReport.carbonCopy">
+							{{ item }},
+						</template>
+					</span>
+				</p>
+				<p class="detail-item">
+					<span class="detail-lable">周 报 内 容 ：</span>
+					<span class="detail-val">
+						{{selecteReport.content}}
+					</span>
+				</p>
+				<p class="detail-item">
+					<span class="detail-lable">备 注 内 容 ：</span>
+					<span class="detail-val">
+						{{selecteReport.remark}}
+					</span>
+				</p>
+			</div>
+		</el-dialog>
+
 	</el-card>
 </template>
 
 <script>
-import { loadReports } from '@/store/api/reports';
+import { loadReports, addReport } from '@/store/api/reports';
 import { isArray } from 'util';
 
 export default {
@@ -52,7 +101,9 @@ export default {
 			total: 100,
 			size: 10,
 			current: 1,
-			myReports: []
+			myReports: [],
+			detailDialogVisible: false,
+			selecteReport: {}
 		};
 	},
 	filters: {
@@ -83,6 +134,11 @@ export default {
 			}).catch((err) => {
 				this.$message.error(err.message);
 			})
+		},
+		handleDetail (row) {
+			this.detailDialogVisible = true;
+			this.selecteReport = { ...row };
+			console.log(this.selecteReport)
 		}
 	},
 	created () {
@@ -117,6 +173,15 @@ export default {
 		border: none;
 		border-bottom: 1px solid #ccc;
 		border-radius: 0;
+	}
+
+	.detail-wrapper {
+		padding: 0 50px;
+	}
+	.detail-lable {
+		display: inline-block;
+		width: 110px;
+		font-weight: 600;
 	}
 }
 </style>

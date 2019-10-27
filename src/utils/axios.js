@@ -7,6 +7,7 @@ import store from '@/store';
 // 创建axios实例,对axios进行封装
 const instance = axios.create({
     baseURL: 'http://47.107.227.25:8000',
+    // baseURL: 'http://192.168.0.6:8000',
     timeout: 60000,
     withCredentials: true,
     paramsSerializer(data) {

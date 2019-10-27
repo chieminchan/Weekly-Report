@@ -44,7 +44,7 @@
 		</el-form>
 		<p class="commit-btns">
 			<el-button>取消</el-button>
-			<el-button type="primary" plain="">保存</el-button>
+			<el-button type="primary" plain @click="handleSaveReport">保存</el-button>
 			<el-button type="primary" @click="submitReport">提交</el-button>
 		</p>
 	</el-card>
@@ -53,7 +53,7 @@
 <script>
 import moment from 'moment';
 import { mapState, mapActions } from 'vuex';
-import { addReport } from '@/store/api/reports';
+import { addReport, saveReport } from '@/store/api/reports';
 
 export default {
 	components: {},
@@ -174,8 +174,24 @@ export default {
 					this.$message.warning('提交失败，请检查填写的内容！')
 				}
 			})
-
 		},
+		handleSaveReport () {
+			const params = { ...this.newReport };
+			delete params.time;
+
+			if (!params.remark) {
+				params.remark = '';
+			}
+
+			params.carbonCopy.push(this.departmentManager.username);
+
+			saveReport(params).then(() => {
+				this.$message.success('保存成功');
+				this.$refs.reportForm.resetFields();
+			}).catch((err) => {
+				this.$message.error(err.message);
+			})
+		}
 	},
 	created () {
 		this.loadMembers();

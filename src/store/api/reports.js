@@ -3,6 +3,9 @@ import axios from '@/utils/axios';
 const LOAD_MEMBERS_URL = '/api/dept/members';
 export const loadMembers = () => axios.get(LOAD_MEMBERS_URL);
 
+const SAVE_REPORT_URL = '/api/report/save';
+export const saveReport = (params) => axios.post(SAVE_REPORT_URL, params);
+
 const ADD_REPORT_URL = '/api/report';
 export const addReport = (params) => axios.post(ADD_REPORT_URL, params);
 
